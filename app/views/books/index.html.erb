@@ -1,1 +1,8 @@
-<h1>Index Views</h1>
+<!-- <h1>Index Views</h1> !--> 
+<!-- Looping through books to display them !--> 
+<% @books.each do |book| %>
+    <h2> <%= link_to book.title, book_path(book) %> </h2>
+<% end %>
+
+
+<%= link_to "Add Book", new_book_path  %>
