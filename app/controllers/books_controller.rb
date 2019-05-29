@@ -8,11 +8,16 @@ class BooksController < ApplicationController
     end
 
     def new
-        @book = Book.new
+        @book = current_user.books.build
+        # line 13 explained: when we create select_tag for the dropdown menu in the form partial file,
+        # options_for_select requires an arrays, which provide the text for the dropdown option (its name) 
+        # and the value it represents (its id attribute)
+        @categories = Category.all.map{ |c| [c.name, c.id] } # Way to access categories when we create a new book
     end
 
     def create
-        @book = Book.new(book_params)
+        @book = current_user.books.build(book_params)
+        @book.category_id = params[:category_id] # Associate a book with a category id
 
         if @book.save # If book saves redirect to root path 
             redirect_to root_path
@@ -42,7 +47,7 @@ class BooksController < ApplicationController
     private 
 
         def book_params
-            params.require(:book).permit(:title, :description, :author)
+            params.require(:book).permit(:title, :description, :author, :category_id)
         end
 
         def find_book
