@@ -1,4 +1,4 @@
-<%= simple_form_for @book do |f| %>
+<%= simple_form_for @book, :html => {:multipart => true } do |f| %>
     <%= select_tag(:category_id, options_for_select(@categories), :prompt => "Select a Category" ) %>
     <%= f.input  :title, label: "Book Title" %>
     <%= f.input  :description %>
@@ -6,4 +6,4 @@
     <%= f.button :submit %>
 <% end %>
 
-<!--Creating a form for new users to create a book !--> 
+<!--Creating a form for new users to create a book!--> 

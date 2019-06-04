@@ -1,7 +1,12 @@
 class BooksController < ApplicationController
     before_action :find_book, only: [:show, :edit, :update, :destroy]
     def index
-        @books = Book.all.order("created_at DESC") #display all books from the model
+        if params[:category].blank? #if the category params are blank and we didnt pass any we want to display all the books because we are not filtering
+            @books = Book.all.order("created_at DESC") #display all books from the model
+        else
+           @category_id = Category.find_by(name: params[:category]).id # getting id of category that were passing in 
+           @books = Book.where(:category_id => @category_id).order("created_at DESC") # getting books where category id is books category id 
+        end
     end
 
     def show
@@ -27,9 +32,11 @@ class BooksController < ApplicationController
     end
 
     def edit 
+        @categories = Category.all.map{ |c| [c.name, c.id] }
     end
 
     def update
+        @book.category_id = params[:category_id]
         # Checking if book is updated successfully 
         if @book.update(book_params)
             redirect_to book_path(@book)
