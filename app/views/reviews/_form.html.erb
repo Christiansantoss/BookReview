@@ -1,0 +1,8 @@
+<%= simple_form_for([@book, @book.reviews.build]) do |f| %>
+  <%= f.input :rating %>
+  <%= f.input :comment %>
+  <%= f.button :submit %>
+<% end %>
+<!--passing two different parameters @book.reviews is possible from association where a book has 
+many reviews. @book is getting there current instance from @book, reason why we did the find beforer action so we have access to instance variable.
+.build is building reviews from that book -->
