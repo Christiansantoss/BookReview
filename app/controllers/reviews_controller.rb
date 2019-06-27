@@ -20,10 +20,13 @@ class ReviewsController < ApplicationController
 
     def edit 
       @review = Review.find(params[:id])
+      #we are finding book so the @review instance is avialable 
     end
 
     def update
       @review = Review.find(params[:id])
+      if @review.update(review_params) #when a user fills out the form there passing in review params from the private method review params
+        redirect_to book_path(@book)
     end
 
     private
