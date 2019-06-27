@@ -1,0 +1,11 @@
+<!--Not just rendering form because in review _form partial were building reviews for the current book-->
+<h1> Edit Form </h1>
+
+
+<%= simple_form_for([@book, @review]) do |f| %>
+    <%= f.input :rating %>
+    <%= f.input :comment  %>
+    <%= f.button :submit %>
+<% end %>
+
+<%= link_to 'Back', :back %>

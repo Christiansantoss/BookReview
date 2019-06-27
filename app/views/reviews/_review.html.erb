@@ -1,4 +1,11 @@
 <p> <%= review.rating %> </p>
 <p> <%= review.comment %> </p>
 
+<%= link_to "Edit", edit_book_review_path(review.book, review) %>
+
+<%= link_to "Delete", book_review_path(review.book, review), method: :delete, data: {
+  confirm: "Are you sure?"} %>
+
+<!--Were putting the link to in the review partial file so its rendered for each instance of the view-->  
+
 <!--Displaying/Showing all books -->

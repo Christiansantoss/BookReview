@@ -1,5 +1,6 @@
 class ReviewsController < ApplicationController
     before_action :find_book
+    before_action :find_review, only: [:edit, :update, :destroy]
 
     def new
         @review = Review.new 
@@ -19,14 +20,23 @@ class ReviewsController < ApplicationController
     end
 
     def edit 
-      @review = Review.find(params[:id])
+      #@review = Review.find(params[:id])
       #we are finding book so the @review instance is avialable 
     end
 
     def update
-      @review = Review.find(params[:id])
+      #@review = Review.find(params[:id])
       if @review.update(review_params) #when a user fills out the form there passing in review params from the private method review params
         redirect_to book_path(@book)
+        #line 29 at @book is avialable because we are finding the book
+      else
+        render 'edit'
+      end
+    end
+
+    def destroy 
+      @review.destroy
+      redirect_to book_path(@book)
     end
 
     private
@@ -40,4 +50,9 @@ class ReviewsController < ApplicationController
         #and a review is associated with a book_id 
       end 
 
+      def find_review
+        @review = Review.find(params[:id])
+        # line 47 refactored from line 27 in a private method so we can call it from the edit, update and destroy methods.
+
+end
 end
