@@ -7,15 +7,23 @@ class ReviewsController < ApplicationController
 
     def create 
         @review = Review.new(review_params)
-        @review.book_id = @book.id # sets review attribute to the current book.id
-        @review.user_id = currrent_user.id
-         # line 10-11  - associate a review with the current book and with the current user
-         # @ instance variables/attributes available because created those migrations  
+        @review.book_id = @book.id #sets review attribute to the current book.id
+        @review.user_id = current_user.id
+         #line 10-11  - associate a review with the current book and with the current user
+         #instance variables/attributes available because created those migrations  
         if @review.save
             redirect_to book_path(@book)
         else 
           render 'new'
         end
+    end
+
+    def edit 
+      @review = Review.find(params[:id])
+    end
+
+    def update
+      @review = Review.find(params[:id])
     end
 
     private
