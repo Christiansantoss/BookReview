@@ -41,9 +41,9 @@ gem 'paperclip', '~> 6.1'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
-group :production do
-  gem 'pg'
-end
+
+gem 'pg'
+
 
 
 group :development, :test do
