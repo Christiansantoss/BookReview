@@ -7,6 +7,8 @@
     <div class="col-md-8">
         <h2> <%= @book.title %> </h2>
         <h3> <%= @book.author %> </h3>
+        <h2> Average Rating </h2>
+        <div class="average-review-rating" data-score="<%=@average_review%>"></div>
         <p> <%= @book.description %> </p>
     </div>
 </div>
@@ -46,6 +48,18 @@
     path: '/assets/'
   });
 </script>
+
+<script>
+  $('.average-review-rating').raty({
+    readOnly: true,
+    path: '/assets/',
+    score: function() {
+      return $(this).attr('data-score')
+    }
+  });
+ </script> 
+
+ <!-- script tag helps with all the functionality that was added up top-->
 
 <!--script tag associated with js. partial is rendered in the show page. 
 targets class that we have of review rating -->

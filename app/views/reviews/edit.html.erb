@@ -3,9 +3,18 @@
 
 
 <%= simple_form_for([@book, @review]) do |f| %>
-    <%= f.input :rating %>
+     <div id="rating-form">
+      <label>Rating</label>
+     </div>
     <%= f.input :comment  %>
     <%= f.button :submit %>
 <% end %>
+
+<script>
+  $('#rating-form').raty({
+    path: '/assets/',
+    scoreName: 'review[rating]'
+  });
+</script>
 
 <%= link_to 'Back', :back %>
