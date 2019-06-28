@@ -1,8 +1,20 @@
 <%= simple_form_for([@book, @book.reviews.build]) do |f| %>
-  <%= f.input :rating %>
+  <div id="rating-form">
+    <%= f.input :rating %>
+  </div>
   <%= f.input :comment %>
   <%= f.button :submit %>
 <% end %>
+
+<script>
+  $('#rating-form').raty({
+    path: '/assets/',
+    scoreName: 'review[rating]'
+  });
+</script>
+<!--Script tag allows us to convert the star rating into an integer value for rating, so when we are in the form partial it allows a user to click the number of stars -->
+
+
 <!--passing two different parameters @book.reviews is possible from association where a book has 
 many reviews. @book is getting there current instance from @book, reason why we did the find beforer action so we have access to instance variable.
 .build is building reviews from that book -->
