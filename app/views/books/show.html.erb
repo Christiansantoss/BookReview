@@ -36,3 +36,16 @@
     <% end %>
 
 <% end %>
+
+<script>
+  $('.review-rating').raty({
+    readonly:true,
+    score:function() {
+      return $(this).attr('data-score');
+    },
+    path: '/assets/'
+  });
+</script>
+
+<!--script tag associated with js. partial is rendered in the show page. 
+targets class that we have of review rating -->

@@ -1,4 +1,4 @@
-<p> <%= review.rating %> </p>
+<div class="review-rating" data-score="<%= review.rating %>"></div>
 <p> <%= review.comment %> </p>
 
 <% if user_signed_in? %>
@@ -9,6 +9,7 @@
       data: { confirm: "Are you sure?"} %>
   
   <% end %>
+<% end %>
 
 
 <!--Were putting the link to in the review partial file so its rendered for each instance of the view-->  
