@@ -1,5 +1,6 @@
 class BooksController < ApplicationController
     before_action :find_book, only: [:show, :edit, :update, :destroy]
+    before_action :authenticate_user!, only: [:new, :edit]
     def index
         if params[:category].blank? #if the category params are blank and we didnt pass any we want to display all the books because we are not filtering
             @books = Book.all.order("created_at DESC") #display all books from the model
